@@ -1,6 +1,13 @@
-let firstNumber = 2;
-let secondNumber = 1;
+let firstNumber = '';
+let secondNumber = '';
+let displayNumber ='';
 let operator = 'subtract';
+const mainDisplay = document.querySelector('.main-display');
+const smallDisplay = document.querySelector('.small-display');
+const numbers = document.querySelectorAll('.number');
+const allClear = document.querySelector('.allclear');
+const clear = document.querySelector('.clear');
+
 
 function add(num1, num2) {
     operator = 'add';
@@ -34,3 +41,15 @@ function operate(op) {
   }
 }
 
+function showDisplay(event) {
+    if(event.target.classList.contains('number')) {
+        displayNumber += event.target.textContent;
+        mainDisplay.textContent = displayNumber;
+        smallDisplay.textContent = displayNumber;
+    }
+    return;
+}
+
+numbers.forEach(function(number) {
+    number.addEventListener('click', showDisplay);
+})
