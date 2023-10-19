@@ -5,8 +5,7 @@ let operator = 'subtract';
 const mainDisplay = document.querySelector('.main-display');
 const smallDisplay = document.querySelector('.small-display');
 const numbers = document.querySelectorAll('.number');
-const allClear = document.querySelector('.allclear');
-const clear = document.querySelector('.clear');
+const reset = document.querySelectorAll('.reset');
 
 
 function add(num1, num2) {
@@ -50,6 +49,22 @@ function showDisplay(event) {
     return;
 }
 
+function resetScreen(event) {
+    if(event.target.classList.contains('allclear')) {
+        displayNumber = '';
+        mainDisplay.textContent = '';
+        smallDisplay.textContent = '';
+    } else if(event.target.classList.contains('clear')) {
+        displayNumber = '';
+        mainDisplay.textContent = '';
+    }
+    return;
+}
+
 numbers.forEach(function(number) {
     number.addEventListener('click', showDisplay);
+})
+
+reset.forEach(function(reset) {
+    reset.addEventListener('click', resetScreen);
 })
