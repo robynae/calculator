@@ -1,6 +1,6 @@
-let firstNumber;
-let secondNumber;
-let operator = '';
+let firstNumber = 2;
+let secondNumber = 1;
+let operator = 'subtract';
 
 function add(num1, num2) {
     operator = 'add';
@@ -21,3 +21,16 @@ function divide(num1, num2) {
     operator = 'divide'
     return num1 / num2;
 }
+
+function operate(op) {
+  if(op === 'add') {
+    return add(firstNumber, secondNumber);
+  } else if(op === 'subtract') {
+    return subtract(firstNumber, secondNumber);
+  } else if(op === 'multiply') {
+    return multiply(firstNumber, secondNumber);
+  } else if(op === 'divide') {
+    return divide(firstNumber, secondNumber);
+  }
+}
+
