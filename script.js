@@ -2,29 +2,34 @@ let firstNumber = '';
 let secondNumber = '';
 let displayNumber ='';
 let operator = 'subtract';
+let operatorClicked = false;
 const mainDisplay = document.querySelector('.main-display');
 const smallDisplay = document.querySelector('.small-display');
 const numbers = document.querySelectorAll('.number');
 const reset = document.querySelectorAll('.reset');
-
+const operatorButton = document.querySelectorAll('.operator');
 
 function add(num1, num2) {
-    operator = 'add';
+    num1 = firstNumber;
+    num2 = secondNumber;
     return num1 + num2;
 }
 
 function subtract(num1, num2) {
-    operator = 'subtract';
+    num1 = firstNumber;
+    num2 = secondNumber;
     return num1 - num2;
 }
 
 function multiply(num1, num2) {
-    operator = 'multiply';
+    num1 = firstNumber;
+    num2 = secondNumber;
     return num1 * num2;
 }
 
 function divide(num1, num2) {
-    operator = 'divide'
+    num1 = firstNumber;
+    num2 = secondNumber;
     return num1 / num2;
 }
 
@@ -41,6 +46,12 @@ function operate(op) {
 }
 
 function showDisplay(event) {
+
+    if(operatorClicked === true) {
+        displayNumber = '';
+        operatorClicked = false;
+    }
+
     if(event.target.classList.contains('number')) {
         displayNumber += event.target.textContent;
         mainDisplay.textContent = displayNumber;
@@ -61,10 +72,24 @@ function resetScreen(event) {
     return;
 }
 
+function addOperator(event) {
+    if(event.target.classList.contains('operator')) {
+        operator = event.target.classList[0];
+        smallDisplay.textContent += ' ' + event.target.textContent;
+        firstNumber = mainDisplay.textContent;
+        operatorClicked = true;
+    }
+    return;
+}
+
 numbers.forEach(function(number) {
     number.addEventListener('click', showDisplay);
 })
 
 reset.forEach(function(reset) {
     reset.addEventListener('click', resetScreen);
+})
+
+operatorButton.forEach(function(btn) {
+    btn.addEventListener('click', addOperator);
 })
